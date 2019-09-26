@@ -1,0 +1,38 @@
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+{% block content %}
+
+<div class='row'>
+  <div class='col-sm-12'>
+    <input type="text" id="time" \>
+    <button id="button" value="val_1" name="but1">Gerar</button>
+  </div>
+</div>
+{% endblock %}
+
+<script>
+  {% block jquery %}
+  $("button").click(function (e) {
+    e.preventDefault();
+    var time = $("#time").val();
+    $.ajax({
+      type: "GET",
+      url: '{% url "start-simul" %}',
+      data: {
+        sid: "{{ simulation_id }}",
+        t: time,
+        operation: "next_time"
+      },
+      success: function (result) {
+        console.log(result)
+      },
+      error: function (result) {
+        alert('error');
+      }
+    })
+  });
+
+  {% endblock %}
+
+</script>

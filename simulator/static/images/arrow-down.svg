@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="11px" height="7px" viewBox="0 0 11 7" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>chevron-down</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Crypto-Dashboard" transform="translate(-1400.000000, -34.000000)" fill="#BFC5D1">
+            <g id="Nav">
+                <path d="M1405.44115,40.3791971 C1405.23701,40.3791971 1405.04169,40.2960793 1404.90022,40.1487939 L1400.20961,35.2707387 C1399.92216,34.9720402 1399.93155,34.4967868 1400.23043,34.2095333 C1400.52913,33.9222799 1401.0042,33.9314735 1401.29145,34.2303597 L1405.44115,38.5459159 L1409.59084,34.2303597 C1409.87791,33.9316611 1410.35297,33.9222799 1410.65186,34.2095333 C1410.95075,34.4967868 1410.96013,34.9720402 1410.67269,35.2707387 L1405.98207,40.1487939 C1405.8406,40.2960793 1405.64528,40.3791971 1405.44115,40.3791971" id="chevron-down"></path>
+            </g>
+        </g>
+    </g>
+</svg>

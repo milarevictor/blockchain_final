@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Calendar-Widget" transform="translate(-566.000000, -18.000000)">
+            <g id="First-Date-Range" transform="translate(404.000000, 10.000000)">
+                <g id="Group" transform="translate(162.000000, 8.000000)">
+                    <circle id="Oval-Copy-10" fill="#FFFFFF" cx="11" cy="11" r="11"></circle>
+                    <polyline id="Line-6" stroke="#488DFF" stroke-linecap="square" points="10 8 13.008951 11.0295359 10 14.0590718"></polyline>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

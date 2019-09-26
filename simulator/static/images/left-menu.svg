@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="14px" viewBox="0 0 18 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Combined Shape</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Crypto-Dashboard" transform="translate(-64.000000, -29.000000)" fill="#BFC5D1">
+            <g id="Nav">
+                <path d="M65,29 L81,29 C81.5522847,29 82,29.4477153 82,30 C82,30.5522847 81.5522847,31 81,31 L65,31 C64.4477153,31 64,30.5522847 64,30 C64,29.4477153 64.4477153,29 65,29 Z M65,35 L81,35 C81.5522847,35 82,35.4477153 82,36 C82,36.5522847 81.5522847,37 81,37 L65,37 C64.4477153,37 64,36.5522847 64,36 C64,35.4477153 64.4477153,35 65,35 Z M65,41 L81,41 C81.5522847,41 82,41.4477153 82,42 C82,42.5522847 81.5522847,43 81,43 L65,43 C64.4477153,43 64,42.5522847 64,42 C64,41.4477153 64.4477153,41 65,41 Z" id="Combined-Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
