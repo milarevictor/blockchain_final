@@ -32,34 +32,6 @@ class Blockchain(models.Model):
     reward = models.FloatField(
         null=False, default=562505.875, help_text='Recompensa por minerar um bloco.')
 
-    def get_num_info(self, time):
-        num_miners = Event.objects.filter(blockchain=self).filter(
-            typeOfEvent=3).filter(time__lte=time).count()
-        blocks_add = Event.objects.filter(blockchain=self).filter(
-            typeOfEvent=1).filter(time__lte=time).count()
-        blocks_remove = Event.objects.filter(blockchain=self).filter(
-            typeOfEvent=2).filter(time__lte=time).count()
-        num_blocks = blocks_add - blocks_remove
-        num_forks = Event.objects.filter(
-            blockchain=self).filter(typeOfEvent=5).filter(time__lte=time).count()
-        num_events = Event.objects.filter(
-            blockchain=self).filter(time__lte=time).count()
-        dados = {"num_miners": num_miners,
-                 "num_blocks": num_blocks, "num_events": num_events, "num_forks": num_forks}
-        return dados
-
-    def get_total_cp(self, time):
-        totalCP = 0
-        simulation = Simulation.objects.filter(blockchain=self)[0]
-
-        event_set = Event.objects.filter(blockchain=self).filter(
-            typeOfEvent=3).filter(time__lte=time).count()
-        # for event in event_set:
-        #     miner = event.miner
-        #     totalCP += miner.computPower
-        totalCP = event_set*simulation.minersCP
-        return totalCP + simulation.user.computPower
-
 
 class Block(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4,
@@ -95,12 +67,3 @@ class Miner(models.Model):
         null=False, help_text='Poder computacional do minerador.')
     blockchain = models.ForeignKey(
         'Blockchain', on_delete=models.CASCADE, null=True)
-
-
-# class Log(models.Model):
-#     id = models.UUIDField(primary_key=True, default=uuid.uuid4,
-#                           help_text='ID único do log.')
-#     blockchain = models.ForeignKey(
-#         'Blockchain', on_delete=models.CASCADE, null=True)
-#     event_id = models.FloatField(null=True, help_text='ID do evento.')
-#     message = models.CharField(max_length=100, null=True)

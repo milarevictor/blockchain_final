@@ -56,7 +56,7 @@ def plotGraph(time, sid):
     reward = blockchain.reward
     avg_time = blockchain.avg_time
     # Get variables
-    totalCP = blockchain.get_total_cp(time)
+    totalCP = get_total_cp(blockchain, time)
     # Do the math
     num_miners = Miner.objects.filter(blockchain=blockchain).count()
     for time_interval in range(1801):
@@ -172,7 +172,7 @@ def start_simul(request):
             else:
                 time = Event.objects.filter(
                     blockchain=blockchain).filter(event_id=int(event)).first().time
-        dados = simulation.blockchain.get_num_info(time=time)
+        dados = get_num_info(simulation.blockchain, time=time)
         print(dados)
         dados['time'] = int(time)
         dados['num_forks'] = Event.objects.filter(
@@ -270,7 +270,7 @@ def generate_events(num_events, simulation, time=0):
         # computPower em MHash/s
         userCP = simulation.user.computPower
         # TotalCP em MHash/s
-        totalCP = simulation.blockchain.get_total_cp(time)
+        totalCP = get_total_cp(simulation.blockchain, time)
         # Average time em minutos
         avg_time = simulation.blockchain.avg_time
         # Cálculo da dificuldade com total MHash
@@ -280,7 +280,8 @@ def generate_events(num_events, simulation, time=0):
             values.append(np.random.exponential(scale=10))
         interval = round(np.average(values))
         time += interval
-        have_fork = np.random.poisson(0.1*interval)
+        have_fork = np.random.poisson(
+            (1/simulation.blockchain.avg_time)*interval)
         if(have_fork > 1):
             last_id = Event.objects.filter(
                 blockchain=simulation.blockchain).latest('event_id').event_id
@@ -288,7 +289,7 @@ def generate_events(num_events, simulation, time=0):
                           blockchain=simulation.blockchain)
             event.save()
 
-        num_miners = simulation.blockchain.get_num_info(time)['num_miners']
+        num_miners = get_num_info(simulation.blockchain, time)['num_miners']
         user_prob = userCP/totalCP
         random_num = np.random.random_sample()
         last_id = Event.objects.filter(
@@ -325,4 +326,31 @@ def generate_events(num_events, simulation, time=0):
 
             events += 1
 
-    return simulation.blockchain.get_num_info(time)
+    return get_num_info(simulation.blockchain, time)
+
+
+def get_num_info(blockchain, time):
+    num_miners = Event.objects.filter(blockchain=blockchain).filter(
+        typeOfEvent=3).filter(time__lte=time).count()
+    blocks_add = Event.objects.filter(blockchain=blockchain).filter(
+        typeOfEvent=1).filter(time__lte=time).count()
+    blocks_remove = Event.objects.filter(blockchain=blockchain).filter(
+        typeOfEvent=2).filter(time__lte=time).count()
+    num_blocks = blocks_add - blocks_remove
+    num_forks = Event.objects.filter(
+        blockchain=blockchain).filter(typeOfEvent=5).filter(time__lte=time).count()
+    num_events = Event.objects.filter(
+        blockchain=blockchain).filter(time__lte=time).count()
+    dados = {"num_miners": num_miners,
+             "num_blocks": num_blocks, "num_events": num_events, "num_forks": num_forks}
+    return dados
+
+
+def get_total_cp(blockchain, time):
+    totalCP = 0
+    simulation = Simulation.objects.filter(blockchain=blockchain)[0]
+
+    event_set = Event.objects.filter(blockchain=blockchain).filter(
+        typeOfEvent=3).filter(time__lte=time).count()
+    totalCP = event_set*simulation.minersCP
+    return totalCP + simulation.user.computPower
