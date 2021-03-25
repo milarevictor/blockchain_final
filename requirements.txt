@@ -16,7 +16,7 @@ pycrypto==2.6.1
 pylint-django==2.0.9
 pylint-plugin-utils==0.5
 pytz==2019.1
-PyYAML==5.1.2
+PyYAML==5.4
 requests==2.22.0
 shellescape==3.4.1
 six==1.12.0
